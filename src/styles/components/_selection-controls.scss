@@ -36,13 +36,23 @@ $control-unchecked-color: $secondary-light;
   justify-content: center;
   background-color: transparent;
 
-  &__input {
+  &__button {
     position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
 
-    &:checked+.checkbox {
+    // Reset native button appearance so browser hover/focus won't affect layout
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    box-sizing: content-box;
+
+    // Keep the decorative sibling (.checkbox) visually consistent when checked
+    &[aria-checked="true"] + .checkbox {
       background-color: $control-checked-color;
       border-color: $control-checked-color;
 
@@ -57,7 +67,7 @@ $control-unchecked-color: $secondary-light;
       }
     }
 
-    &:disabled+.checkbox {
+    &:disabled + .checkbox {
       border-color: $secondary-light;
       background-color: rgba($secondary-light, 0.1);
     }
@@ -76,15 +86,23 @@ $control-unchecked-color: $secondary-light;
   align-items: center;
   justify-content: center;
 
-  &__input {
+  &__button {
     position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
 
-    &:checked+.radio {
+    // Reset native button appearance so browser hover/focus won't affect layout
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    box-sizing: content-box;
+
+    &[aria-checked="true"] + .radio {
       border-color: $control-checked-color;
-      border-width: 2px; // Keep border width consistent
 
       &::after {
         content: '';
@@ -95,13 +113,20 @@ $control-unchecked-color: $secondary-light;
       }
     }
 
-    &:disabled+.radio {
+    &:disabled + .radio {
       border-color: $secondary-light;
 
       &::after {
         background-color: $secondary-light;
       }
     }
+  }
+
+  // Custom focus styles: show a subtle ring on the decorative element instead
+  &__button:focus-visible + .checkbox,
+  &__button:focus-visible + .radio {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba($control-checked-color, 0.12);
   }
 }
 
@@ -114,7 +139,7 @@ $control-unchecked-color: $secondary-light;
   .checkbox {
     border-color: $secondary-dark;
 
-    &__input:checked+.checkbox {
+    &__button[aria-checked="true"] + .checkbox {
       background-color: $accent-dark;
       border-color: $accent-dark;
     }
@@ -123,7 +148,7 @@ $control-unchecked-color: $secondary-light;
   .radio {
     border-color: $secondary-dark;
 
-    &__input:checked+.radio {
+    &__button[aria-checked="true"] + .radio {
       border-color: $accent-dark;
 
       &::after {
