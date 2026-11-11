@@ -170,12 +170,12 @@ export function renderSelectionControlExamples(container: HTMLElement) {
         target.click()
       }
 
-      buttons.forEach((btn, idx) => {
+      buttons.forEach((btn) => {
         btn.addEventListener('click', () => {
           if (btn.disabled) return
           buttons.forEach(b => b.setAttribute('aria-checked', 'false'))
           btn.setAttribute('aria-checked', 'true')
-          buttons.forEach((b, i) => b.setAttribute('tabindex', b === btn ? '0' : '-1'))
+          buttons.forEach((b) => b.setAttribute('tabindex', b === btn ? '0' : '-1'))
         })
 
         btn.addEventListener('keydown', (e) => {
