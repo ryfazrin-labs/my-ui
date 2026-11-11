@@ -1,4 +1,5 @@
 import { createCodeCollapse } from '../components/code-collapse'
+import { initSliders } from '../components/slider'
 
 export function renderSliderExamples(container: HTMLElement) {
   const section = document.createElement('div')
@@ -11,49 +12,44 @@ export function renderSliderExamples(container: HTMLElement) {
           <!-- Sliders Row -->
           <div style="display: flex; flex-direction: column; gap: 24px;">
             
-            <!-- Slider 1 -->
+            <!-- Slider 1: 100% -->
             <div class="slider-container">
               <div class="slider-icon slider-icon--active">
                 <i class="ph-bold ph-speaker-high"></i>
               </div>
-              <input type="range" class="slider slider--thick" min="0" max="100" value="100" 
-                style="background: linear-gradient(to right, var(--oui-color-accent, #387AFF) 0%, var(--oui-color-accent, #387AFF) 100%, rgba(153, 153, 157, 0.25) 100%, rgba(153, 153, 157, 0.25) 100%);">
+              <input type="range" class="slider slider--thick" min="0" max="100" value="100">
             </div>
 
-            <!-- Slider 2 -->
+            <!-- Slider 2: 75% -->
             <div class="slider-container">
               <div class="slider-icon slider-icon--active">
                 <i class="ph-bold ph-speaker-high"></i>
               </div>
-              <input type="range" class="slider slider--thick" min="0" max="100" value="75" 
-                style="background: linear-gradient(to right, var(--oui-color-accent, #387AFF) 0%, var(--oui-color-accent, #387AFF) 75%, rgba(153, 153, 157, 0.25) 75%, rgba(153, 153, 157, 0.25) 100%);">
+              <input type="range" class="slider slider--thick" min="0" max="100" value="75">
             </div>
 
-            <!-- Slider 3 -->
+            <!-- Slider 3: 50% -->
+            <div class="slider-container">
+              <div class="slider-icon slider-icon--active">
+                <i class="ph-bold ph-speaker-high"></i>
+              </div>
+              <input type="range" class="slider slider--thick" min="0" max="100" value="50">
+            </div>
+
+            <!-- Slider 4: 25% -->
             <div class="slider-container">
               <div class="slider-icon slider-icon--active">
                 <i class="ph-bold ph-speaker-low"></i>
               </div>
-              <input type="range" class="slider slider--thick" min="0" max="100" value="50" 
-                style="background: linear-gradient(to right, var(--oui-color-accent, #387AFF) 0%, var(--oui-color-accent, #387AFF) 50%, rgba(153, 153, 157, 0.25) 50%, rgba(153, 153, 157, 0.25) 100%);">
+              <input type="range" class="slider slider--thick" min="0" max="100" value="25">
             </div>
 
-            <!-- Slider 4 -->
-            <div class="slider-container">
-              <div class="slider-icon">
-                <i class="ph-bold ph-speaker-low"></i>
-              </div>
-              <input type="range" class="slider slider--thick" min="0" max="100" value="25" 
-                style="background: linear-gradient(to right, var(--oui-color-accent, #387AFF) 0%, var(--oui-color-accent, #387AFF) 25%, rgba(153, 153, 157, 0.25) 25%, rgba(153, 153, 157, 0.25) 100%);">
-            </div>
-
-             <!-- Slider 5 -->
+            <!-- Slider 5: 0% (Muted) -->
             <div class="slider-container">
               <div class="slider-icon">
                 <i class="ph-bold ph-speaker-none"></i>
               </div>
-              <input type="range" class="slider slider--thick" min="0" max="100" value="0" 
-                style="background: linear-gradient(to right, var(--oui-color-accent, #387AFF) 0%, var(--oui-color-accent, #387AFF) 0%, rgba(153, 153, 157, 0.25) 0%, rgba(153, 153, 157, 0.25) 100%);">
+              <input type="range" class="slider slider--thick" min="0" max="100" value="0">
             </div>
 
           </div>
@@ -71,9 +67,18 @@ export function renderSliderExamples(container: HTMLElement) {
     <i class="ph-bold ph-speaker-high"></i>
   </div>
   <input type="range" class="slider slider--thick" min="0" max="100" value="75">
-</div>`
+</div>
+
+<!-- JavaScript Integration -->
+<script type="module">
+  import { initSliders } from 'my-ui';
+  initSliders();
+</script>`
     mainSection.appendChild(createCodeCollapse('View Code', codeExample))
   }
+
+  // Initialize interactive slider controllers for dynamic fill & responsive icons
+  initSliders(section)
 
   container.appendChild(section)
 }

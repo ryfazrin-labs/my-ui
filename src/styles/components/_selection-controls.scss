@@ -1,75 +1,101 @@
 @import "../_design-tokens.scss";
 
-// Selection Control Tokens
-$control-size: 24px;
-$control-border-width: 1px;
-$control-checked-color: $accent-light;
-$control-unchecked-color: $secondary-light;
+// Selection Control Tokens (One UI 7)
+$control-size: 22px;
+$control-border-width: 2px;
+$control-checked-color: var(--oui-color-accent, $accent-light);
+$control-unchecked-color: var(--oui-color-secondary, $secondary-light);
 
-// Base Control Styles
+// Label container
 .control-label {
   display: inline-flex;
   align-items: center;
   gap: 12px;
   cursor: pointer;
-  font-size: 16px;
-  color: $primary-light;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--oui-color-primary, $primary-light);
   user-select: none;
-  margin-bottom: 8px;
+  line-height: 1.4;
+  transition: opacity 0.2s ease;
 
   &--disabled {
-    opacity: 0.5;
+    opacity: 0.45;
     cursor: not-allowed;
+    pointer-events: none;
   }
 }
 
 // Checkbox
 .checkbox {
   position: relative;
-  width: $control-size;
-  height: $control-size;
-  border: $control-border-width solid $control-unchecked-color;
-  border-radius: 50%; // Circular
-  transition: all 0.2s ease;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
+  width: $control-size;
+  height: $control-size;
+  flex-shrink: 0;
+  aspect-ratio: 1;
 
-  &__button {
+  &__input {
     position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
-
-    // Reset native button appearance so browser hover/focus won't affect layout
-    -webkit-appearance: none;
-    appearance: none;
-    border: none;
-    background: transparent;
-    padding: 0;
     margin: 0;
-    box-sizing: content-box;
+    pointer-events: none;
 
-    // Keep the decorative sibling (.checkbox) visually consistent when checked
-    &[aria-checked="true"] + .checkbox {
+    // Checked state
+    &:checked + .checkbox__indicator {
       background-color: $control-checked-color;
       border-color: $control-checked-color;
 
       &::after {
-        content: '';
-        width: 10px;
-        height: 6px;
-        border: 2px solid white;
-        border-top: none;
-        border-right: none;
-        transform: rotate(-45deg) translate(1px, -1px);
+        opacity: 1;
+        transform: rotate(-45deg) scale(1);
       }
     }
 
-    &:disabled + .checkbox {
-      border-color: $secondary-light;
-      background-color: rgba($secondary-light, 0.1);
+    // Focus state
+    &:focus-visible + .checkbox__indicator {
+      box-shadow: 0 0 0 4px rgba($accent-light, 0.25);
+    }
+
+    // Disabled state
+    &:disabled + .checkbox__indicator {
+      border-color: var(--oui-color-secondary, $secondary-light);
+      background-color: rgba(153, 153, 157, 0.1);
+      cursor: not-allowed;
+    }
+  }
+
+  &__indicator {
+    width: $control-size;
+    height: $control-size;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: $control-border-width solid $control-unchecked-color;
+    background-color: transparent;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    flex-shrink: 0;
+
+    // White checkmark
+    &::after {
+      content: '';
+      width: 9px;
+      height: 5px;
+      border: 2px solid #FFFFFF;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg) scale(0.5);
+      margin-top: -2px;
+      opacity: 0;
+      transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.15s ease;
+      box-sizing: border-box;
     }
   }
 }
@@ -77,83 +103,106 @@ $control-unchecked-color: $secondary-light;
 // Radio
 .radio {
   position: relative;
-  width: $control-size;
-  height: $control-size;
-  border: $control-border-width solid $control-unchecked-color;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: $control-size;
+  height: $control-size;
+  flex-shrink: 0;
+  aspect-ratio: 1;
 
-  &__button {
+  &__input {
     position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
-
-    // Reset native button appearance so browser hover/focus won't affect layout
-    -webkit-appearance: none;
-    appearance: none;
-    border: none;
-    background: transparent;
-    padding: 0;
     margin: 0;
-    box-sizing: content-box;
+    pointer-events: none;
 
-    &[aria-checked="true"] + .radio {
+    // Checked state
+    &:checked + .radio__indicator {
       border-color: $control-checked-color;
 
       &::after {
-        content: '';
-        width: 14px; // Inner circle size
-        height: 14px;
-        background-color: $control-checked-color;
-        border-radius: 50%;
+        opacity: 1;
+        transform: scale(1);
       }
     }
 
-    &:disabled + .radio {
-      border-color: $secondary-light;
+    // Focus state
+    &:focus-visible + .radio__indicator {
+      box-shadow: 0 0 0 4px rgba($accent-light, 0.25);
+    }
+
+    // Disabled state
+    &:disabled + .radio__indicator {
+      border-color: var(--oui-color-secondary, $secondary-light);
+      cursor: not-allowed;
 
       &::after {
-        background-color: $secondary-light;
+        background-color: var(--oui-color-secondary, $secondary-light);
       }
     }
   }
 
-  // Custom focus styles: show a subtle ring on the decorative element instead
-  &__button:focus-visible + .checkbox,
-  &__button:focus-visible + .radio {
-    outline: none;
-    box-shadow: 0 0 0 4px rgba($control-checked-color, 0.12);
+  &__indicator {
+    width: $control-size;
+    height: $control-size;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: $control-border-width solid $control-unchecked-color;
+    background-color: transparent;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    flex-shrink: 0;
+
+    // Centered solid circle dot
+    &::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background-color: $control-checked-color;
+      opacity: 0;
+      transform: scale(0.4);
+      transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.15s ease;
+      box-sizing: border-box;
+    }
   }
 }
 
-// Dark Mode
+// Dark Mode Overrides
 [data-theme="dark"],
 .dark-mode {
   .control-label {
-    color: $primary-dark;
+    color: var(--oui-color-primary, $primary-dark);
   }
 
   .checkbox {
-    border-color: $secondary-dark;
+    &__indicator {
+      border-color: var(--oui-color-secondary, $secondary-dark);
+    }
 
-    &__button[aria-checked="true"] + .checkbox {
-      background-color: $accent-dark;
-      border-color: $accent-dark;
+    &__input:checked + .checkbox__indicator {
+      background-color: var(--oui-color-accent, $accent-dark);
+      border-color: var(--oui-color-accent, $accent-dark);
     }
   }
 
   .radio {
-    border-color: $secondary-dark;
+    &__indicator {
+      border-color: var(--oui-color-secondary, $secondary-dark);
+    }
 
-    &__button[aria-checked="true"] + .radio {
-      border-color: $accent-dark;
+    &__input:checked + .radio__indicator {
+      border-color: var(--oui-color-accent, $accent-dark);
 
       &::after {
-        background-color: $accent-dark;
+        background-color: var(--oui-color-accent, $accent-dark);
       }
     }
   }

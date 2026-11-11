@@ -3,8 +3,6 @@
 // Slider Tokens
 $slider-height: 4px;
 $slider-thumb-size: 20px;
-$slider-track-color-light: rgba($secondary-light, 0.3);
-$slider-track-color-dark: rgba($secondary-dark, 0.3);
 
 .slider-container {
   display: flex;
@@ -15,46 +13,60 @@ $slider-track-color-dark: rgba($secondary-dark, 0.3);
 }
 
 .slider-icon {
-  color: $secondary-light;
+  color: var(--oui-color-secondary, $secondary-light);
   width: 24px;
   height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
 
   &--active {
-    color: $accent-light;
+    color: var(--oui-color-accent, $accent-light);
   }
 }
 
 .slider {
   -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   height: $slider-height;
-  background: $slider-track-color-light;
-  border-radius: $slider-height / 2;
+  --slider-track-bg: rgba(153, 153, 157, 0.25);
+  background: linear-gradient(
+    to right,
+    var(--oui-color-accent, #387AFF) 0%,
+    var(--oui-color-accent, #387AFF) var(--slider-fill, 0%),
+    var(--slider-track-bg) var(--slider-fill, 0%),
+    var(--slider-track-bg) 100%
+  );
+  border-radius: calc(#{$slider-height} / 2);
   outline: none;
-  transition: background 0.2s;
   cursor: pointer;
   position: relative;
 
-  // Range Progress (Visualized via JS usually, but basic CSS here)
+  // Range Progress (Chrome/Safari)
   &::-webkit-slider-runnable-track {
     width: 100%;
     height: $slider-height;
     cursor: pointer;
-    background: transparent; // Handled by main background
-    border-radius: $slider-height / 2;
+    background: transparent;
+    border-radius: calc(#{$slider-height} / 2);
   }
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
+    appearance: none;
     height: $slider-thumb-size;
     width: $slider-thumb-size;
     border-radius: 50%;
-    background: $container-background-light;
+    background: var(--oui-color-container, #FFFFFF);
     cursor: pointer;
-    margin-top: ($slider-height - $slider-thumb-size) / 2;
+    margin-top: calc((#{$slider-height} - #{$slider-thumb-size}) / 2);
     box-shadow: $elevation-2;
-    transition: transform 0.1s ease, box-shadow 0.2s ease;
-    border: 0.5px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+    border: 0.5px solid rgba(0, 0, 0, 0.08);
 
     &:hover {
       transform: scale(1.1);
@@ -62,8 +74,8 @@ $slider-track-color-dark: rgba($secondary-dark, 0.3);
     }
 
     &:active {
-      transform: scale(1.2);
-      background: $container-background-light;
+      transform: scale(1.15);
+      background: var(--oui-color-container, #FFFFFF);
     }
   }
 
@@ -72,8 +84,8 @@ $slider-track-color-dark: rgba($secondary-dark, 0.3);
     width: 100%;
     height: $slider-height;
     cursor: pointer;
-    background: $slider-track-color-light;
-    border-radius: $slider-height / 2;
+    background: transparent;
+    border-radius: calc(#{$slider-height} / 2);
   }
 
   &::-moz-range-thumb {
@@ -81,17 +93,23 @@ $slider-track-color-dark: rgba($secondary-dark, 0.3);
     width: $slider-thumb-size;
     border: none;
     border-radius: 50%;
-    background: $container-background-light;
+    background: var(--oui-color-container, #FFFFFF);
     cursor: pointer;
     box-shadow: $elevation-2;
   }
 
   // Thick Slider Variant (Volume/Brightness style)
   &--thick {
-    height: 16px; // Thinner track as requested
+    height: 16px;
     border-radius: 8px;
-    background: rgba($secondary-light, 0.15);
-    overflow: visible;
+    --slider-track-bg: rgba(153, 153, 157, 0.2);
+    background: linear-gradient(
+      to right,
+      var(--oui-color-accent, #387AFF) 0%,
+      var(--oui-color-accent, #387AFF) var(--slider-fill, 0%),
+      var(--slider-track-bg) var(--slider-fill, 0%),
+      var(--slider-track-bg) 100%
+    );
 
     &::-webkit-slider-runnable-track {
       height: 16px;
@@ -99,22 +117,29 @@ $slider-track-color-dark: rgba($secondary-dark, 0.3);
     }
 
     &::-webkit-slider-thumb {
-      opacity: 1;
       width: 22px;
       height: 22px;
-      margin-top: (16px - 22px) / 2; // -3px
-      background-color: #000;
-      border: 2px solid $accent-light;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Slight shadow for depth
+      margin-top: calc((16px - 22px) / 2); // -3px
+      background-color: #000000;
+      border: 2px solid var(--oui-color-accent, #387AFF);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
       transform: none;
 
       &:hover {
-        transform: scale(1.1);
+        transform: scale(1.08);
       }
 
       &:active {
-        transform: scale(1.1);
+        transform: scale(1.12);
       }
+    }
+
+    &::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      background-color: #000000;
+      border: 2px solid var(--oui-color-accent, #387AFF);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
     }
   }
 }
@@ -123,27 +148,32 @@ $slider-track-color-dark: rgba($secondary-dark, 0.3);
 [data-theme="dark"],
 .dark-mode {
   .slider-icon {
-    color: $secondary-dark;
+    color: var(--oui-color-secondary, $secondary-dark);
 
     &--active {
-      color: $accent-dark;
+      color: var(--oui-color-accent, $accent-dark);
     }
   }
 
   .slider {
-    background: $slider-track-color-dark;
+    --slider-track-bg: rgba(132, 132, 135, 0.25);
 
     &::-webkit-slider-thumb {
-      background: $container-background-dark;
-      border-color: rgba(255, 255, 255, 0.1);
+      background: var(--oui-color-container, $container-background-dark);
+      border-color: rgba(255, 255, 255, 0.15);
     }
 
     &--thick {
-      background: rgba($secondary-dark, 0.2);
+      --slider-track-bg: rgba(132, 132, 135, 0.25);
 
       &::-webkit-slider-thumb {
-        background-color: #000; // Always black thumb as per image
-        border-color: $accent-dark;
+        background-color: #000000;
+        border-color: var(--oui-color-accent, $accent-dark);
+      }
+
+      &::-moz-range-thumb {
+        background-color: #000000;
+        border-color: var(--oui-color-accent, $accent-dark);
       }
     }
   }

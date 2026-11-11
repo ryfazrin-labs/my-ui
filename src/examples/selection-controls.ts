@@ -6,71 +6,82 @@ export function renderSelectionControlExamples(container: HTMLElement) {
     <section class="section">
       <h2>Selection Controls</h2>
       
-      <div class="card">
-        <div class="card__header">
-          <h3 class="card__title">Radio & Checkbox</h3>
-        </div>
-        <div class="card__body">
+      <div class="card" style="padding: 24px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px;">
           
-          <div style="display: flex; flex-direction: column; gap: 24px;">
-            <!-- Checkboxes -->
-            <div>
-              <h4 style="margin-bottom: 16px; font-size: 14px; color: #999;">Checkboxes</h4>
-              <div style="display: flex; flex-direction: column; gap: 12px;">
-                <label class="control-label">
-                  <div class="checkbox">
-                    <button type="button" class="checkbox__button" role="checkbox" aria-checked="true"></button>
-                    <div class="checkbox"></div>
-                  </div>
-                  Selected Option
-                </label>
-                
-                <label class="control-label">
-                  <div class="checkbox">
-                    <button type="button" class="checkbox__button" role="checkbox" aria-checked="false"></button>
-                    <div class="checkbox"></div>
-                  </div>
-                  Unselected Option
-                </label>
+          <!-- Checkboxes Column -->
+          <div>
+            <h4 style="margin-bottom: 16px; font-size: 14px; font-weight: 600; color: var(--oui-color-secondary, #999);">Checkboxes</h4>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <label class="control-label">
+                <span class="checkbox">
+                  <input type="checkbox" class="checkbox__input" checked>
+                  <span class="checkbox__indicator"></span>
+                </span>
+                <span>Selected Option</span>
+              </label>
+              
+              <label class="control-label">
+                <span class="checkbox">
+                  <input type="checkbox" class="checkbox__input">
+                  <span class="checkbox__indicator"></span>
+                </span>
+                <span>Unselected Option</span>
+              </label>
 
-                <label class="control-label control-label--disabled">
-                  <div class="checkbox">
-                    <button type="button" class="checkbox__button" role="checkbox" aria-checked="true" disabled aria-disabled="true"></button>
-                    <div class="checkbox"></div>
-                  </div>
-                  Disabled Selected
-                </label>
-              </div>
+              <label class="control-label control-label--disabled">
+                <span class="checkbox">
+                  <input type="checkbox" class="checkbox__input" checked disabled>
+                  <span class="checkbox__indicator"></span>
+                </span>
+                <span>Disabled Selected</span>
+              </label>
+
+              <label class="control-label control-label--disabled">
+                <span class="checkbox">
+                  <input type="checkbox" class="checkbox__input" disabled>
+                  <span class="checkbox__indicator"></span>
+                </span>
+                <span>Disabled Unselected</span>
+              </label>
             </div>
+          </div>
 
-            <!-- Radios -->
-            <div>
-              <h4 style="margin-bottom: 16px; font-size: 14px; color: #999;">Radio Buttons</h4>
-              <div style="display: flex; flex-direction: column; gap: 12px;">
-                <label class="control-label">
-                  <div class="radio">
-                    <button type="button" class="radio__button" role="radio" aria-checked="true" data-group="radio-demo"></button>
-                    <div class="radio"></div>
-                  </div>
-                  Option 1
-                </label>
-                
-                <label class="control-label">
-                  <div class="radio">
-                    <button type="button" class="radio__button" role="radio" aria-checked="false" data-group="radio-demo"></button>
-                    <div class="radio"></div>
-                  </div>
-                  Option 2
-                </label>
+          <!-- Radio Buttons Column -->
+          <div>
+            <h4 style="margin-bottom: 16px; font-size: 14px; font-weight: 600; color: var(--oui-color-secondary, #999);">Radio Buttons</h4>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <label class="control-label">
+                <span class="radio">
+                  <input type="radio" name="radio-demo" class="radio__input" checked>
+                  <span class="radio__indicator"></span>
+                </span>
+                <span>Option 1</span>
+              </label>
+              
+              <label class="control-label">
+                <span class="radio">
+                  <input type="radio" name="radio-demo" class="radio__input">
+                  <span class="radio__indicator"></span>
+                </span>
+                <span>Option 2</span>
+              </label>
 
-                <label class="control-label control-label--disabled">
-                  <div class="radio">
-                    <button type="button" class="radio__button" role="radio" aria-checked="false" disabled aria-disabled="true" data-group="radio-demo"></button>
-                    <div class="radio"></div>
-                  </div>
-                  Disabled Option
-                </label>
-              </div>
+              <label class="control-label">
+                <span class="radio">
+                  <input type="radio" name="radio-demo" class="radio__input">
+                  <span class="radio__indicator"></span>
+                </span>
+                <span>Option 3</span>
+              </label>
+
+              <label class="control-label control-label--disabled">
+                <span class="radio">
+                  <input type="radio" name="radio-demo-disabled" class="radio__input" disabled>
+                  <span class="radio__indicator"></span>
+                </span>
+                <span>Disabled Option</span>
+              </label>
             </div>
           </div>
 
@@ -82,95 +93,25 @@ export function renderSelectionControlExamples(container: HTMLElement) {
   // Add code collapse
   const mainSection = section.querySelector('.section')
   if (mainSection) {
-    const codeExample = `<label class="control-label">
-  <div class="checkbox">
-    <button type="button" class="checkbox__button" role="checkbox" aria-checked="true"></button>
-    <div class="checkbox"></div>
-  </div>
-  Selected Option
+    const codeExample = `<!-- Checkbox -->
+<label class="control-label">
+  <span class="checkbox">
+    <input type="checkbox" class="checkbox__input" checked>
+    <span class="checkbox__indicator"></span>
+  </span>
+  <span>Selected Option</span>
 </label>
 
+<!-- Radio Button -->
 <label class="control-label">
-  <div class="radio">
-    <button type="button" class="radio__button" role="radio" aria-checked="true"></button>
-    <div class="radio"></div>
-  </div>
-  Selected Option
+  <span class="radio">
+    <input type="radio" name="example-group" class="radio__input" checked>
+    <span class="radio__indicator"></span>
+  </span>
+  <span>Option 1</span>
 </label>`
     mainSection.appendChild(createCodeCollapse('View Code', codeExample))
   }
 
   container.appendChild(section)
-
-  // Initialize interactive behavior for role=checkbox and role=radio buttons
-  ;(() => {
-    const checkboxes = section.querySelectorAll<HTMLButtonElement>('button[role="checkbox"]')
-    checkboxes.forEach(btn => {
-      if (!btn.hasAttribute('tabindex')) btn.setAttribute('tabindex', btn.disabled ? '-1' : '0')
-      btn.addEventListener('click', () => {
-        if (btn.disabled) return
-        const checked = btn.getAttribute('aria-checked') === 'true'
-        btn.setAttribute('aria-checked', checked ? 'false' : 'true')
-        btn.dispatchEvent(new CustomEvent('change', { detail: { checked: !checked } }))
-      })
-      btn.addEventListener('keydown', (e) => {
-        if (e.key === ' ' || e.key === 'Enter') {
-          e.preventDefault()
-          btn.click()
-        }
-      })
-    })
-
-    const radios = section.querySelectorAll<HTMLButtonElement>('button[role="radio"]')
-    const groups = new Map<string, HTMLButtonElement[]>()
-    radios.forEach(r => {
-      const group = r.getAttribute('data-group') || 'default'
-      if (!groups.has(group)) groups.set(group, [])
-      groups.get(group)!.push(r)
-    })
-
-    groups.forEach((buttons) => {
-      // ensure tabindex: only the checked radio is tabbable
-      let checkedIndex = buttons.findIndex(b => b.getAttribute('aria-checked') === 'true' && !b.disabled)
-      if (checkedIndex === -1) checkedIndex = buttons.findIndex(b => !b.disabled)
-      buttons.forEach((b, i) => b.setAttribute('tabindex', i === checkedIndex ? '0' : '-1'))
-
-      const focusRadio = (index: number) => {
-        const target = buttons[index]
-        if (!target || target.disabled) return
-        target.focus()
-        target.click()
-      }
-
-      buttons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          if (btn.disabled) return
-          buttons.forEach(b => b.setAttribute('aria-checked', 'false'))
-          btn.setAttribute('aria-checked', 'true')
-          buttons.forEach((b) => b.setAttribute('tabindex', b === btn ? '0' : '-1'))
-        })
-
-        btn.addEventListener('keydown', (e) => {
-          if (e.key === ' ' || e.key === 'Enter') {
-            e.preventDefault()
-            btn.click()
-            return
-          }
-          const enabled = buttons.filter(b => !b.disabled)
-          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-            e.preventDefault()
-            const cur = enabled.indexOf(btn)
-            const next = (cur + 1) % enabled.length
-            focusRadio(buttons.indexOf(enabled[next]))
-          }
-          if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-            e.preventDefault()
-            const cur = enabled.indexOf(btn)
-            const prev = (cur - 1 + enabled.length) % enabled.length
-            focusRadio(buttons.indexOf(enabled[prev]))
-          }
-        })
-      })
-    })
-  })()
 }
