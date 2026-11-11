@@ -1,29 +1,68 @@
 @import "../_design-tokens.scss";
 
-// Code Collapse Tokens
-$code-bg-light: #F5F5F7;
-$code-bg-dark: #1C1C1E;
-$code-border-radius: 16px;
+// =============================================================================
+// VS Code-Style Code View & Syntax Highlighting (Dark+)
+// =============================================================================
 
 .code-collapse {
   margin-top: 16px;
-  border-radius: $code-border-radius;
+  border-radius: 16px;
   overflow: hidden;
-  background-color: $code-bg-light;
-  box-shadow: $elevation-1;
+  background-color: #1E1E1E;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.16);
+  transition: all 0.25s ease;
 
   &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
-    background-color: rgba($secondary-light, 0.05);
-    border-bottom: 1px solid rgba($secondary-light, 0.1);
+    padding: 10px 16px;
+    background-color: #252526;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     cursor: pointer;
+    user-select: none;
     transition: background-color 0.2s ease;
 
     &:hover {
-      background-color: rgba($secondary-light, 0.08);
+      background-color: #2D2D2E;
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: inset 0 0 0 2px var(--oui-color-accent, #387AFF);
+    }
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  // macOS window control dots
+  &__dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+
+    &--red {
+      background-color: #FF5F56;
+    }
+
+    &--yellow {
+      background-color: #FFBD2E;
+    }
+
+    &--green {
+      background-color: #27C93F;
     }
   }
 
@@ -31,38 +70,59 @@ $code-border-radius: 16px;
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
-    color: $primary-light;
+    color: #CCCCCC;
     margin: 0;
 
     i {
-      font-size: 18px;
-      transition: transform 0.2s ease;
+      font-size: 14px;
+      color: #858585;
+      transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1);
     }
+  }
+
+  &__lang {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #9CDCFE;
+    padding: 2px 6px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   &__actions {
     display: flex;
+    align-items: center;
     gap: 8px;
   }
 
   &__button {
-    padding: 6px 12px;
-    background-color: rgba($accent-light, 0.1);
-    color: $accent-light;
-    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background-color: rgba(255, 255, 255, 0.06);
+    color: #CCCCCC;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px;
+    font-family: inherit;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 4px;
 
     &:hover {
-      background-color: rgba($accent-light, 0.2);
+      background-color: rgba(255, 255, 255, 0.14);
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    &:active {
+      transform: scale(0.96);
     }
 
     i {
@@ -73,36 +133,13 @@ $code-border-radius: 16px;
   &__content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.35s cubic-bezier(0.2, 0, 0, 1);
   }
 
-  &__code {
-    padding: 16px;
-    margin: 0;
-    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-    font-size: 13px;
-    line-height: 1.6;
-    color: $primary-light;
+  &__editor {
+    padding: 14px 0;
+    background-color: #1E1E1E;
     overflow-x: auto;
-    white-space: pre;
-
-    &::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: rgba($secondary-light, 0.05);
-      border-radius: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: rgba($secondary-light, 0.2);
-      border-radius: 4px;
-
-      &:hover {
-        background: rgba($secondary-light, 0.3);
-      }
-    }
   }
 
   // Expanded state
@@ -112,53 +149,104 @@ $code-border-radius: 16px;
     }
 
     .code-collapse__content {
-      max-height: 600px;
+      max-height: 800px;
     }
   }
 }
 
-// Dark Mode
-[data-theme="dark"],
-.dark-mode {
-  .code-collapse {
-    background-color: $code-bg-dark;
+// Line Numbers & Code Layout
+.code-line {
+  display: flex;
+  align-items: baseline;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12.5px;
+  line-height: 1.65;
+  white-space: pre;
+  tab-size: 2;
 
-    &__header {
-      background-color: rgba($secondary-dark, 0.1);
-      border-bottom-color: rgba($secondary-dark, 0.2);
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+  }
 
-      &:hover {
-        background-color: rgba($secondary-dark, 0.15);
-      }
-    }
+  &__num {
+    min-width: 42px;
+    width: 42px;
+    text-align: right;
+    padding-right: 16px;
+    color: #6E7681;
+    user-select: none;
+    font-size: 11.5px;
+    opacity: 0.65;
+    flex-shrink: 0;
+  }
 
-    &__title {
-      color: $primary-dark;
-    }
+  &__code {
+    padding-right: 20px;
+    color: #D4D4D4;
+    flex: 1;
+  }
+}
 
-    &__button {
-      background-color: rgba($accent-dark, 0.15);
-      color: $accent-dark;
+// =============================================================================
+// VS Code Dark+ Syntax Token Colors
+// =============================================================================
 
-      &:hover {
-        background-color: rgba($accent-dark, 0.25);
-      }
-    }
+.token-keyword {
+  color: #C586C0; // Purple / Magenta (import, export, const, function, return)
+  font-weight: 500;
+}
 
-    &__code {
-      color: $primary-dark;
+.token-function {
+  color: #DCDCAA; // Golden Yellow (function calls: showToast, initTheme)
+}
 
-      &::-webkit-scrollbar-track {
-        background: rgba($secondary-dark, 0.1);
-      }
+.token-string {
+  color: #CE9178; // Warm Orange / Terracotta (strings)
+}
 
-      &::-webkit-scrollbar-thumb {
-        background: rgba($secondary-dark, 0.3);
+.token-tag {
+  color: #569CD6; // VS Code Blue (HTML tags: <button, <div, </span>)
+}
 
-        &:hover {
-          background: rgba($secondary-dark, 0.4);
-        }
-      }
-    }
+.token-attr {
+  color: #9CDCFE; // Light Sky Blue (HTML attributes: class, type, id)
+}
+
+.token-property {
+  color: #9CDCFE; // Light Sky Blue (Object keys: message, variant)
+}
+
+.token-type {
+  color: #4EC9B0; // Emerald Teal (Types / Interfaces: HTMLElement, ToastOptions)
+}
+
+.token-comment {
+  color: #6A9955; // VS Code Green (Comments)
+  font-style: italic;
+}
+
+.token-number {
+  color: #B5CEA8; // Light Olive Green (Numbers: 3500, 100)
+}
+
+.token-boolean {
+  color: #569CD6; // Blue (true, false, null, undefined)
+}
+
+// Scrollbar inside editor
+.code-collapse__editor::-webkit-scrollbar {
+  height: 8px;
+}
+
+.code-collapse__editor::-webkit-scrollbar-track {
+  background: #1E1E1E;
+}
+
+.code-collapse__editor::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.25);
   }
 }
