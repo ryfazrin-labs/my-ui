@@ -147,6 +147,7 @@ $sidebar-blur: 20px;
 }
 
 // Dark Mode
+[data-theme="dark"],
 .dark-mode {
   .sidebar {
     background-color: $sidebar-bg-dark;
@@ -189,5 +190,70 @@ $sidebar-blur: 20px;
 
   .sidebar-toggle {
     background-color: $accent-dark;
+  }
+
+  .theme-toggle {
+    &__btn {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.14);
+      }
+    }
+
+    &__icon-wrap {
+      background-color: #2E2E30;
+      color: #FFD233;
+    }
+  }
+}
+
+// Theme Toggle Button
+.theme-toggle {
+  margin-top: 12px;
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--oui-color-component, #E8E8EA);
+    color: var(--oui-color-primary, #000000);
+    border: 1px solid var(--oui-color-border, transparent);
+    border-radius: var(--oui-radius-pill, 28px);
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    justify-content: flex-start;
+
+    &:hover {
+      background-color: rgba($secondary-light, 0.15);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  &__icon-wrap {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--oui-color-container, #FFFFFF);
+    color: var(--oui-color-accent, #387AFF);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+
+  &__label {
+    user-select: none;
   }
 }

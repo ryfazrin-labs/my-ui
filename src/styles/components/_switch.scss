@@ -116,6 +116,7 @@ $switch-transition: 0.2s ease-in-out;
   }
 
   // Dark mode
+  [data-theme="dark"] &,
   .dark-mode & {
     .switch__track {
       background-color: rgba($secondary-dark, 0.5);

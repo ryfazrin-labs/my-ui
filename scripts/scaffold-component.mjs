@@ -102,6 +102,7 @@ $${kebabName}-bg-dark: $container-background-dark;
 }
 
 // Dark Mode
+[data-theme="dark"],
 .dark-mode {
   .${kebabName} {
     background-color: $${kebabName}-bg-dark;
@@ -120,22 +121,8 @@ const exampleTemplate = `import { createCodeCollapse } from '../components/code-
 export function render${pascalName}Examples(container: HTMLElement) {
   const section = document.createElement('div')
   section.innerHTML = \`
-    <!-- Light Mode Section -->
     <section class="section">
       <h2>${titleName}</h2>
-      <div class="card" style="padding: 24px;">
-        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-          <div class="${kebabName}">
-            <i class="ph-bold ph-sparkle ${kebabName}__icon"></i>
-            <span class="${kebabName}__content">Sample ${titleName}</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Dark Mode Section -->
-    <section class="section dark-mode">
-      <h2>${titleName} (Dark Mode)</h2>
       <div class="card" style="padding: 24px;">
         <div style="display: flex; gap: 16px; flex-wrap: wrap;">
           <div class="${kebabName}">
@@ -148,13 +135,13 @@ export function render${pascalName}Examples(container: HTMLElement) {
   \`
 
   // Add code collapse
-  const lightSection = section.querySelector('.section:not(.dark-mode)')
-  if (lightSection) {
+  const mainSection = section.querySelector('.section')
+  if (mainSection) {
     const codeExample = \`<div class="${kebabName}">
   <i class="ph-bold ph-sparkle ${kebabName}__icon"></i>
   <span class="${kebabName}__content">Sample ${titleName}</span>
 </div>\`
-    lightSection.appendChild(createCodeCollapse('View Code', codeExample))
+    mainSection.appendChild(createCodeCollapse('View Code', codeExample))
   }
 
   container.appendChild(section)

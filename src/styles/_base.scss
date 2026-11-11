@@ -8,8 +8,9 @@
 }
 
 body {
-  background-color: $background-light;
-  color: $primary-light;
+  background-color: var(--oui-color-background, $background-light);
+  color: var(--oui-color-primary, $primary-light);
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 // Container styles
@@ -24,8 +25,8 @@ body {
   padding: 2rem 0;
 }
 
-// Dark mode styles
+// Scoped dark mode styles
 .dark-mode {
-  background-color: $background-dark;
-  color: $primary-dark;
+  background-color: var(--oui-color-background, $background-dark);
+  color: var(--oui-color-primary, $primary-dark);
 }

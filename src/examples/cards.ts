@@ -11,7 +11,7 @@ export function renderCardExamples(container: HTMLElement) {
         <div class="card">
           <div class="card__header">
             <h3 class="card__title">Basic Card</h3>
-            <span style="color: #999;">More</span>
+            <span style="color: var(--oui-color-secondary, #999);">More</span>
           </div>
           <div class="card__body">
             <p>This is a standard card container with elevation. It uses the default rounded corners and padding defined in the design system.</p>
@@ -46,38 +46,11 @@ export function renderCardExamples(container: HTMLElement) {
 
       </div>
     </section>
-
-    <section class="section dark-mode">
-      <h2>Cards (Dark Mode)</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
-        
-        <!-- Basic Card Dark -->
-        <div class="card">
-          <div class="card__header">
-            <h3 class="card__title">Dark Card</h3>
-          </div>
-          <div class="card__body">
-            <p>In dark mode, cards use a slightly lighter background than the page background to create depth without heavy shadows.</p>
-          </div>
-        </div>
-
-        <!-- Flat Card Dark -->
-        <div class="card card--flat">
-          <div class="card__header">
-            <h3 class="card__title">Flat Dark</h3>
-          </div>
-          <div class="card__body">
-            <p>Flat cards in dark mode use a subtle border to distinguish themselves from the background.</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
   `
 
   // Add code collapse
-  const lightSection = section.querySelector('.section:not(.dark-mode)')
-  if (lightSection) {
+  const mainSection = section.querySelector('.section')
+  if (mainSection) {
     const codeExample = `<div class="card">
   <div class="card__header">
     <h3 class="card__title">Basic Card</h3>
@@ -89,7 +62,7 @@ export function renderCardExamples(container: HTMLElement) {
     <button class="button button--primary">Action</button>
   </div>
 </div>`
-    lightSection.appendChild(createCodeCollapse('View Code', codeExample))
+    mainSection.appendChild(createCodeCollapse('View Code', codeExample))
   }
 
   container.appendChild(section)

@@ -1,7 +1,11 @@
 import 'normalize.css'
 import './main.scss'
+import { initTheme } from './components/theme'
 import { renderComponentExamples } from './examples/components'
 import { createSidebar, createSidebarToggle } from './components/sidebar'
+
+// Initialize One UI theme (persisted via localStorage or OS preference)
+initTheme()
 
 // Import Phosphor Icons from CDN
 const link = document.createElement('link')

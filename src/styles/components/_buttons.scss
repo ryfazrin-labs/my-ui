@@ -78,6 +78,7 @@ $button-gradient-end: $gradient-end;
 }
 
 // Dark Mode styles for buttons
+[data-theme="dark"],
 .dark-mode {
   .button {
     &--light {

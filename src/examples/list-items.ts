@@ -33,7 +33,7 @@ export function renderListExamples(container: HTMLElement) {
               <div class="list-item__subtitle">Default payment method</div>
             </div>
             <div class="list-item__trailing">
-              <span style="font-size: 12px; margin-right: 8px;">On</span>
+              <span style="font-size: 12px; margin-right: 8px; color: var(--oui-color-secondary, #999);">On</span>
               <i class="ph-bold ph-caret-right"></i>
             </div>
           </div>
@@ -56,16 +56,9 @@ export function renderListExamples(container: HTMLElement) {
             </div>
           </div>
 
-        </div>
-      </div>
-    </section>
-
-    <section class="section dark-mode">
-      <h2>List Items (Dark Mode)</h2>
-      <div class="card" style="padding: 8px;">
-        <div class="list-group">
-           <div class="list-item">
-            <div class="list-item__leading">
+          <!-- List Item 4 -->
+          <div class="list-item">
+            <div class="list-item__leading" style="background-color: rgba(153, 153, 157, 0.15); color: var(--oui-color-primary, #000);">
               <i class="ph-bold ph-user"></i>
             </div>
             <div class="list-item__content">
@@ -76,14 +69,15 @@ export function renderListExamples(container: HTMLElement) {
               <i class="ph-bold ph-caret-right"></i>
             </div>
           </div>
+
         </div>
       </div>
     </section>
   `
 
   // Add code collapse
-  const lightSection = section.querySelector('.section:not(.dark-mode)')
-  if (lightSection) {
+  const mainSection = section.querySelector('.section')
+  if (mainSection) {
     const codeExample = `<div class="list-item">
   <div class="list-item__leading">
     <i class="ph-bold ph-clock"></i>
@@ -96,7 +90,7 @@ export function renderListExamples(container: HTMLElement) {
     <i class="ph-bold ph-caret-right"></i>
   </div>
 </div>`
-    lightSection.appendChild(createCodeCollapse('View Code', codeExample))
+    mainSection.appendChild(createCodeCollapse('View Code', codeExample))
   }
 
   container.appendChild(section)

@@ -77,39 +77,11 @@ export function renderSelectionControlExamples(container: HTMLElement) {
         </div>
       </div>
     </section>
-
-    <section class="section dark-mode">
-      <h2>Selection Controls (Dark Mode)</h2>
-      <div class="card">
-        <div class="card__header">
-          <h3 class="card__title">Controls</h3>
-        </div>
-        <div class="card__body">
-           <div style="display: flex; flex-direction: column; gap: 12px;">
-              <label class="control-label">
-                <div class="checkbox">
-                  <input type="checkbox" class="checkbox__input" checked>
-                  <div class="checkbox"></div>
-                </div>
-                Sync Data
-              </label>
-              
-              <label class="control-label">
-                <div class="radio">
-                  <input type="radio" name="radio-demo-dark" class="radio__input" checked>
-                  <div class="radio"></div>
-                </div>
-                Always Allow
-              </label>
-           </div>
-        </div>
-      </div>
-    </section>
   `
 
   // Add code collapse
-  const lightSection = section.querySelector('.section:not(.dark-mode)')
-  if (lightSection) {
+  const mainSection = section.querySelector('.section')
+  if (mainSection) {
     const codeExample = `<label class="control-label">
   <div class="checkbox">
     <button type="button" class="checkbox__button" role="checkbox" aria-checked="true"></button>
@@ -125,7 +97,7 @@ export function renderSelectionControlExamples(container: HTMLElement) {
   </div>
   Selected Option
 </label>`
-    lightSection.appendChild(createCodeCollapse('View Code', codeExample))
+    mainSection.appendChild(createCodeCollapse('View Code', codeExample))
   }
 
   container.appendChild(section)

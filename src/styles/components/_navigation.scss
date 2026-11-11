@@ -195,6 +195,7 @@ $nav-bg-dark: $container-background-dark;
 }
 
 // Dark Mode
+[data-theme="dark"],
 .dark-mode {
   .header {
     background-color: $header-bg-dark;

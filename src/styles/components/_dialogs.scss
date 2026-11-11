@@ -125,6 +125,7 @@ $overlay-bg: rgba(0, 0, 0, 0.5);
 }
 
 // Dark Mode
+[data-theme="dark"],
 .dark-mode {
   .dialog {
     background-color: rgba($container-background-dark, 0.85);

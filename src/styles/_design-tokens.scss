@@ -1,6 +1,80 @@
-// Design Tokens for Samsung One UI Style
+// =============================================================================
+// CSS Custom Properties (One UI 7 Design Tokens)
+// =============================================================================
 
-// Colors
+:root {
+  // Colors (Light Mode Default)
+  --oui-color-primary: #000000;
+  --oui-color-secondary: #99999D;
+  --oui-color-foreground: #FCFCFF;
+  --oui-color-background: #F1F1F3;
+  --oui-color-container: #FFFFFF;
+  --oui-color-component: #E8E8EA;
+  --oui-color-accent: #387AFF;
+  --oui-color-accent-hover: #2667EB;
+
+  --oui-color-border: rgba(153, 153, 157, 0.2);
+  --oui-color-divider: rgba(153, 153, 157, 0.15);
+
+  // Blur & Depth
+  --oui-blur-bg: rgba(252, 252, 255, 0.7);
+  --oui-blur-radius: 48px;
+
+  // Radii
+  --oui-radius-sm: 8px;
+  --oui-radius-md: 12px;
+  --oui-radius-lg: 16px;
+  --oui-radius-xl: 24px;
+  --oui-radius-2xl: 28px;
+  --oui-radius-pill: 9999px;
+
+  // Elevations
+  --oui-shadow-1: 0 1px 4px rgba(0, 0, 0, 0.08);
+  --oui-shadow-2: 0 4px 8px rgba(0, 0, 0, 0.12);
+  --oui-shadow-3: 0 6px 12px rgba(0, 0, 0, 0.15);
+  --oui-shadow-4: 0 8px 16px rgba(0, 0, 0, 0.18);
+  --oui-shadow-5: 0 12px 24px rgba(0, 0, 0, 0.22);
+}
+
+[data-theme="dark"],
+.dark-mode {
+  // Colors (Dark Mode)
+  --oui-color-primary: #FFFFFF;
+  --oui-color-secondary: #848487;
+  --oui-color-foreground: #2E2E30;
+  --oui-color-background: #000000;
+  --oui-color-container: #17171A;
+  --oui-color-component: #17171A;
+  --oui-color-accent: #387AFF;
+  --oui-color-accent-hover: #508DFF;
+
+  --oui-color-border: rgba(132, 132, 135, 0.2);
+  --oui-color-divider: rgba(132, 132, 135, 0.15);
+
+  --oui-blur-bg: rgba(23, 23, 26, 0.75);
+  --oui-blur-radius: 48px;
+
+  --oui-shadow-1: 0 1px 4px rgba(0, 0, 0, 0.3);
+  --oui-shadow-2: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --oui-shadow-3: 0 6px 12px rgba(0, 0, 0, 0.5);
+  --oui-shadow-4: 0 8px 16px rgba(0, 0, 0, 0.6);
+  --oui-shadow-5: 0 12px 24px rgba(0, 0, 0, 0.7);
+}
+
+// =============================================================================
+// SCSS Variables & Backward Compatibility Mappings
+// =============================================================================
+
+// Active Semantic Variables
+$primary: var(--oui-color-primary, #000000);
+$secondary: var(--oui-color-secondary, #99999D);
+$foreground: var(--oui-color-foreground, #FCFCFF);
+$background: var(--oui-color-background, #F1F1F3);
+$container-background: var(--oui-color-container, #FFFFFF);
+$component: var(--oui-color-component, #E8E8EA);
+$accent: var(--oui-color-accent, #387AFF);
+
+// Static Palette Tokens (For backward compatibility)
 $primary-light: #000000;
 $secondary-light: #99999D;
 $foreground-light: #FCFCFF;
@@ -21,17 +95,14 @@ $accent-dark: #387AFF;
 $gradient-start: #66A1F3;
 $gradient-end: #22C9A6;
 
-// Multi-Stop Gradient Colors
-$gradient-color-1: #364B6F;  // 0%
-$gradient-color-2: #91B0BF;  // 65%
-$gradient-color-3: #CFCFCF;  // 87%
+$gradient-color-1: #364B6F;
+$gradient-color-2: #91B0BF;
+$gradient-color-3: #CFCFCF;
 
-// Alternative Gradient Colors
-$gradient-dark-1: #364B6F;   // Dark blue
-$gradient-dark-2: #384247;   // Dark gray
-$gradient-dark-3: #2D2D30;   // Darker gray
+$gradient-dark-1: #364B6F;
+$gradient-dark-2: #384247;
+$gradient-dark-3: #2D2D30;
 
-// Linear Gradients
 $gradient-linear-2stops: linear-gradient(90deg, $gradient-start 0%, $gradient-end 100%);
 $gradient-linear-3stops: linear-gradient(90deg, 
   $gradient-color-1 0%,
@@ -65,21 +136,24 @@ $light-mode-blur-background: #FCFCFF;
 $light-mode-blur-opacity: 0.5;
 $light-mode-blur-radius: 48px;
 
-// Utility Spacings (optional)
+// Utility Spacings
 $space-1: 4px;
 $space-2: 8px;
 $space-3: 16px;
 $space-4: 32px;
 $space-5: 64px;
 
-// Border Radius (rounded)
+// Border Radius
+$border-radius-sm: 8px;
 $border-radius-md: 12px;
 $border-radius-lg: 16px;
-$border-radius-sm: 8px;
+$border-radius-xl: 24px;
+$border-radius-2xl: 28px;
+$border-radius-pill: 9999px;
 
 // Shadows (Elevation)
-$elevation-1: 0 1px 4px rgba(0, 0, 0, 0.1);
-$elevation-2: 0 4px 8px rgba(0, 0, 0, 0.15);
-$elevation-3: 0 6px 12px rgba(0, 0, 0, 0.2);
-$elevation-4: 0 8px 16px rgba(0, 0, 0, 0.25);
-$elevation-5: 0 12px 24px rgba(0, 0, 0, 0.3);
+$elevation-1: var(--oui-shadow-1, 0 1px 4px rgba(0, 0, 0, 0.1));
+$elevation-2: var(--oui-shadow-2, 0 4px 8px rgba(0, 0, 0, 0.15));
+$elevation-3: var(--oui-shadow-3, 0 6px 12px rgba(0, 0, 0, 0.2));
+$elevation-4: var(--oui-shadow-4, 0 8px 16px rgba(0, 0, 0, 0.25));
+$elevation-5: var(--oui-shadow-5, 0 12px 24px rgba(0, 0, 0, 0.3));

@@ -71,8 +71,10 @@ $card-bg-dark: $container-background-dark;
 }
 
 // Dark Mode
+[data-theme="dark"],
 .dark-mode {
-  .card {
+  .card,
+  &.card {
     background-color: rgba($card-bg-dark, 0.85);
     box-shadow: none; // One UI usually flat in dark mode or subtle shadow
 

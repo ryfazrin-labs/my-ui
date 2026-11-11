@@ -40,6 +40,7 @@ $label-font-weight: 500;
 }
 
 // Dark mode label adjustments
+[data-theme="dark"],
 .dark-mode {
   .input-label {
     color: $secondary-dark;
@@ -191,6 +192,7 @@ $label-font-weight: 500;
 }
 
 // Dark mode adjustments
+[data-theme="dark"],
 .dark-mode {
   .input-field {
     &--light {

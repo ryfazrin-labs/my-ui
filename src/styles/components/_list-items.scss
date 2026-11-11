@@ -112,6 +112,7 @@ $list-icon-bg-size: 40px;
 }
 
 // Dark Mode
+[data-theme="dark"],
 .dark-mode {
   .list-item {
     &:hover {

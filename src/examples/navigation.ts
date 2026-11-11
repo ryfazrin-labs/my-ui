@@ -1,13 +1,13 @@
 import { createCodeCollapse } from '../components/code-collapse'
 
 export function renderNavigationExamples(container: HTMLElement) {
-const section = document.createElement('div')
-section.innerHTML = `
+  const section = document.createElement('div')
+  section.innerHTML = `
 <section class="section">
   <h2>Navigation & Headers</h2>
 
   <!-- Expanded Header Demo -->
-  <div class="card" style="padding: 0; overflow: hidden; height: 300px; position: relative; background-color: #F1F1F3;">
+  <div class="card" style="padding: 0; overflow: hidden; height: 300px; position: relative; background-color: var(--oui-color-background, #F1F1F3);">
     <div class="header header--expanded">
       <div class="header__top-bar">
         <div class="header__action">
@@ -22,7 +22,7 @@ section.innerHTML = `
     </div>
 
     <div style="padding: 16px;">
-      <p style="color: #999;">Scroll content goes here...</p>
+      <p style="color: var(--oui-color-secondary, #999);">Scroll content goes here...</p>
     </div>
 
     <!-- Bottom Nav Demo -->
@@ -50,8 +50,8 @@ section.innerHTML = `
 
   <div style="margin-top: 24px;"></div>
 
-  <!-- Collapsed Header Demo (Dark Mode) -->
-  <div class="card dark-mode" style="padding: 0; overflow: hidden; position: relative; background-color: #000;">
+  <!-- Collapsed Header Demo -->
+  <div class="card" style="padding: 0; overflow: hidden; position: relative; background-color: var(--oui-color-background, #F1F1F3);">
     <div class="header header--collapsed">
       <div class="header__action">
         <i class="ph-bold ph-list" style="font-size: 24px;"></i>
@@ -72,19 +72,17 @@ section.innerHTML = `
       </div>
     </div>
     <div style="padding: 16px;">
-      <p style="color: #666;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni officia tempore quasi
-        corrupti? Quam saepe enim ut debitis quo, neque reiciendis commodi excepturi expedita explicabo. Fugiat amet
-        dolorem recusandae eaque!</p>
+      <p style="color: var(--oui-color-secondary, #666);">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni officia tempore quasi corrupti? Quam saepe enim ut debitis quo.</p>
     </div>
   </div>
 
 </section>
 `
 
-// Add code collapse
-const lightSection = section.querySelector('.section:not(.dark-mode)')
-if (lightSection) {
-const codeExample = `<div class="bottom-nav">
+  // Add code collapse
+  const mainSection = section.querySelector('.section')
+  if (mainSection) {
+    const codeExample = `<div class="bottom-nav">
   <div class="bottom-nav__item bottom-nav__item--active">
     <div class="bottom-nav__icon">
       <i class="ph-bold ph-house"></i>
@@ -98,8 +96,8 @@ const codeExample = `<div class="bottom-nav">
     <span class="bottom-nav__label">Search</span>
   </div>
 </div>`
-lightSection.appendChild(createCodeCollapse('View Code', codeExample))
-}
+    mainSection.appendChild(createCodeCollapse('View Code', codeExample))
+  }
 
-container.appendChild(section)
+  container.appendChild(section)
 }

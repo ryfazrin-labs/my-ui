@@ -120,6 +120,7 @@ $slider-track-color-dark: rgba($secondary-dark, 0.3);
 }
 
 // Dark Mode
+[data-theme="dark"],
 .dark-mode {
   .slider-icon {
     color: $secondary-dark;

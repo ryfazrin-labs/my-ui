@@ -1,3 +1,5 @@
+import { createThemeToggle } from './theme'
+
 export interface SidebarItem {
   id: string
   label: string
@@ -27,6 +29,12 @@ export function createSidebar(items: SidebarItem[]): HTMLElement {
       </ul>
     </nav>
   `
+
+  // Attach theme toggle to sidebar header
+  const header = sidebar.querySelector('.sidebar__header')
+  if (header) {
+    header.appendChild(createThemeToggle({ showLabel: true }))
+  }
 
   // Add click handlers for smooth scrolling
   const links = sidebar.querySelectorAll('.sidebar__link')

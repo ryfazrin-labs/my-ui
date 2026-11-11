@@ -9,8 +9,8 @@ section.innerHTML = `
   <div
     style="display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; justify-content: center; background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%); padding: 40px; border-radius: 24px;">
 
-    <!-- Internet Menu (Dark Mode Demo) -->
-    <div class="dark-mode" style="width: 100%; max-width: 360px; background: none;">
+    <!-- Internet Quick Panel Menu -->
+    <div style="width: 100%; max-width: 360px; background: none;">
       <div class="menu-panel">
         <!-- Header -->
         <div class="menu-panel__header">
@@ -121,7 +121,7 @@ section.innerHTML = `
       </div>
     </div>
 
-    <!-- Pop-out Menu (Light Mode Demo) -->
+    <!-- Pop-out Action Menu -->
     <div style="width: 100%; max-width: 360px;">
       <div class="menu-panel">
         <!-- Grid Actions -->
