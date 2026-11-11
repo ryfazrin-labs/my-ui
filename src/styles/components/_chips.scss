@@ -1,0 +1,182 @@
+@import "../_design-tokens.scss";
+
+// =============================================================================
+// Chips & Badges - Samsung One UI 7
+// =============================================================================
+
+// Chips
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 16px;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--oui-color-text-primary);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--oui-radius-pill, 28px);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px var(--oui-color-accent, #387AFF);
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  &__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    margin-right: -6px;
+    margin-left: 2px;
+    font-size: 13px;
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  // Selected State
+  &--selected {
+    background-color: var(--oui-color-accent, #387AFF);
+    color: #FFFFFF;
+    border-color: transparent;
+
+    &:hover {
+      background-color: #2F6DE0;
+    }
+
+    .chip__close:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+  }
+
+  // Outlined variant
+  &--outlined {
+    background-color: transparent;
+    border-color: rgba(0, 0, 0, 0.15);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+// Badges
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  box-sizing: border-box;
+  border-radius: var(--oui-radius-pill, 28px);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  background-color: var(--oui-color-accent, #387AFF);
+  color: #FFFFFF;
+
+  // Variants
+  &--success {
+    background-color: #22C9A6;
+  }
+
+  &--danger {
+    background-color: #FF3B30;
+  }
+
+  &--warning {
+    background-color: #FF9F0A;
+    color: #000000;
+  }
+
+  &--neutral {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--oui-color-text-primary);
+  }
+
+  // Dot Badge
+  &--dot {
+    min-width: 8px;
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: 50%;
+  }
+}
+
+// Dark Mode Overrides
+[data-theme="dark"],
+.dark-mode {
+  .chip {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.12);
+    }
+
+    &--outlined {
+      border-color: rgba(255, 255, 255, 0.2);
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.06);
+      }
+    }
+
+    &--selected {
+      background-color: var(--oui-color-accent, #387AFF);
+      border-color: transparent;
+
+      &:hover {
+        background-color: #2F6DE0;
+      }
+    }
+  }
+
+  .badge--neutral {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+}

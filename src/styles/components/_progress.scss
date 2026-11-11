@@ -1,0 +1,258 @@
+@import "../_design-tokens.scss";
+
+// =============================================================================
+// Progress Indicators (Linear & Samsung 4-Dot Orbital Spinner) - Samsung One UI 7
+// =============================================================================
+
+// Linear Progress Bar
+.progress-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--oui-color-text-secondary);
+  }
+
+  &__label {
+    color: var(--oui-color-text-primary);
+  }
+
+  &__value {
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__track {
+    position: relative;
+    width: 100%;
+    height: 8px;
+    background-color: rgba(0, 0, 0, 0.06);
+    border-radius: var(--oui-radius-pill, 28px);
+    overflow: hidden;
+  }
+
+  &__fill {
+    height: 100%;
+    background-color: var(--oui-color-accent, #387AFF);
+    border-radius: var(--oui-radius-pill, 28px);
+    transition: width 0.35s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  // Sizes
+  &--sm {
+    .progress-bar__track {
+      height: 4px;
+    }
+  }
+
+  &--lg {
+    .progress-bar__track {
+      height: 12px;
+    }
+  }
+
+  // Indeterminate State
+  &--indeterminate {
+    .progress-bar__track {
+      overflow: hidden;
+    }
+
+    .progress-bar__fill {
+      position: absolute;
+      width: 40%;
+      animation: oneui-progress-indeterminate 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+  }
+}
+
+@keyframes oneui-progress-indeterminate {
+  0% {
+    left: -40%;
+    width: 20%;
+  }
+  50% {
+    left: 30%;
+    width: 60%;
+  }
+  100% {
+    left: 100%;
+    width: 20%;
+  }
+}
+
+// =============================================================================
+// Samsung Galaxy 4-Dot Orbital Loading Spinner
+// Signature dynamic orbit: 4 dots bloom outward, revolve, and contract together
+// =============================================================================
+
+.spinner {
+  --spinner-size: 40px;
+  --dot-size: 10px;
+  --dot-min: 3.5px;
+  --dot-max: 13.5px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spinner-size);
+  height: var(--spinner-size);
+  box-sizing: border-box;
+  animation: samsung-spinner-rotate 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+
+  // Sizes
+  &--sm {
+    --spinner-size: 24px;
+    --dot-size: 6px;
+    --dot-min: 2px;
+    --dot-max: 8px;
+  }
+
+  &--lg {
+    --spinner-size: 56px;
+    --dot-size: 14px;
+    --dot-min: 5px;
+    --dot-max: 19px;
+  }
+
+  // Dots
+  &__dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--dot-size);
+    height: var(--dot-size);
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform;
+
+    // Dot 1: Top (Cobalt Blue)
+    &:nth-child(1) {
+      background-color: #387AFF;
+      animation: samsung-dot-1 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    // Dot 2: Right (Cyan / Teal)
+    &:nth-child(2) {
+      background-color: #2BB8D6;
+      animation: samsung-dot-2 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    // Dot 3: Bottom (Sky Blue)
+    &:nth-child(3) {
+      background-color: #5E9BFF;
+      animation: samsung-dot-3 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    // Dot 4: Left (Mint / Emerald Green)
+    &:nth-child(4) {
+      background-color: #22C9A6;
+      animation: samsung-dot-4 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+  }
+
+  // Monochrome variant using One UI active accent
+  &--monochrome {
+    .spinner__dot {
+      background-color: var(--oui-color-accent, #387AFF) !important;
+    }
+  }
+}
+
+// Container rotation (starts at 45deg for diamond setup, speeds up when pulling inward)
+@keyframes samsung-spinner-rotate {
+  0% {
+    transform: rotate(45deg);
+  }
+  38% {
+    transform: rotate(200deg);
+  }
+  65% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(405deg);
+  }
+}
+
+// Dot 1: Moves along Y-axis (Top)
+@keyframes samsung-dot-1 {
+  0% {
+    transform: translate(-50%, -50%) translateY(calc(-1 * var(--dot-min))) scale(0.85);
+  }
+  38% {
+    transform: translate(-50%, -50%) translateY(calc(-1 * var(--dot-max))) scale(1);
+  }
+  65% {
+    transform: translate(-50%, -50%) translateY(calc(-1 * var(--dot-max))) scale(1);
+  }
+  92%, 100% {
+    transform: translate(-50%, -50%) translateY(calc(-1 * var(--dot-min))) scale(0.85);
+  }
+}
+
+// Dot 2: Moves along X-axis (Right)
+@keyframes samsung-dot-2 {
+  0% {
+    transform: translate(-50%, -50%) translateX(var(--dot-min)) scale(0.85);
+  }
+  38% {
+    transform: translate(-50%, -50%) translateX(var(--dot-max)) scale(1);
+  }
+  65% {
+    transform: translate(-50%, -50%) translateX(var(--dot-max)) scale(1);
+  }
+  92%, 100% {
+    transform: translate(-50%, -50%) translateX(var(--dot-min)) scale(0.85);
+  }
+}
+
+// Dot 3: Moves along Y-axis (Bottom)
+@keyframes samsung-dot-3 {
+  0% {
+    transform: translate(-50%, -50%) translateY(var(--dot-min)) scale(0.85);
+  }
+  38% {
+    transform: translate(-50%, -50%) translateY(var(--dot-max)) scale(1);
+  }
+  65% {
+    transform: translate(-50%, -50%) translateY(var(--dot-max)) scale(1);
+  }
+  92%, 100% {
+    transform: translate(-50%, -50%) translateY(var(--dot-min)) scale(0.85);
+  }
+}
+
+// Dot 4: Moves along X-axis (Left)
+@keyframes samsung-dot-4 {
+  0% {
+    transform: translate(-50%, -50%) translateX(calc(-1 * var(--dot-min))) scale(0.85);
+  }
+  38% {
+    transform: translate(-50%, -50%) translateX(calc(-1 * var(--dot-max))) scale(1);
+  }
+  65% {
+    transform: translate(-50%, -50%) translateX(calc(-1 * var(--dot-max))) scale(1);
+  }
+  92%, 100% {
+    transform: translate(-50%, -50%) translateX(calc(-1 * var(--dot-min))) scale(0.85);
+  }
+}
+
+// Dark Mode Support
+[data-theme="dark"],
+.dark-mode {
+  .progress-bar__track {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .spinner__dot {
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.15));
+  }
+}

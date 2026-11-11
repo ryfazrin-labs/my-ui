@@ -23,6 +23,10 @@ const sidebarItems = [
   { id: 'navigation', label: 'Navigation', icon: 'ph-compass' },
   { id: 'sliders', label: 'Sliders', icon: 'ph-sliders' },
   { id: 'selection', label: 'Selection Controls', icon: 'ph-check-square' },
+  { id: 'segmented', label: 'Segmented Control', icon: 'ph-tabs' },
+  { id: 'toasts', label: 'Toasts', icon: 'ph-bell-ringing' },
+  { id: 'progress', label: 'Progress Indicators', icon: 'ph-circle-notch' },
+  { id: 'chips', label: 'Chips & Badges', icon: 'ph-tag' },
   { id: 'dialogs', label: 'Dialogs', icon: 'ph-chat-circle' },
   { id: 'menus', label: 'Menus', icon: 'ph-dots-three' },
 ]

@@ -16,6 +16,10 @@
 @import "./styles/components/_menus.scss";
 @import "./styles/components/_sidebar.scss";
 @import "./styles/components/_code-collapse.scss";
+@import "./styles/components/_segmented.scss";
+@import "./styles/components/_toasts.scss";
+@import "./styles/components/_progress.scss";
+@import "./styles/components/_chips.scss";
 
 // Breakpoint mixins
 $breakpoint-mobile: 320px;

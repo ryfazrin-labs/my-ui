@@ -8,6 +8,10 @@ import { renderSliderExamples } from './sliders'
 import { renderSelectionControlExamples } from './selection-controls'
 import { renderDialogExamples } from './dialogs'
 import { renderMenuExamples } from './menus'
+import { renderSegmentedExamples } from './segmented'
+import { renderToastExamples } from './toasts'
+import { renderProgressExamples } from './progress'
+import { renderChipsExamples } from './chips'
 
 export function renderComponentExamples(container: HTMLElement) {
   // Create main container
@@ -25,6 +29,10 @@ export function renderComponentExamples(container: HTMLElement) {
     { id: 'navigation', render: renderNavigationExamples },
     { id: 'sliders', render: renderSliderExamples },
     { id: 'selection', render: renderSelectionControlExamples },
+    { id: 'segmented', render: renderSegmentedExamples },
+    { id: 'toasts', render: renderToastExamples },
+    { id: 'progress', render: renderProgressExamples },
+    { id: 'chips', render: renderChipsExamples },
     { id: 'dialogs', render: renderDialogExamples },
     { id: 'menus', render: renderMenuExamples },
   ]

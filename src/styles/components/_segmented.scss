@@ -1,0 +1,138 @@
+@import "../_design-tokens.scss";
+
+// =============================================================================
+// Segmented Control / Pill Tabs (One UI 7)
+// =============================================================================
+
+$segmented-radius: var(--oui-radius-2xl, 28px);
+$segmented-item-radius: calc(var(--oui-radius-2xl, 28px) - 4px);
+
+.segmented-control {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--oui-color-component, #E8E8EA);
+  border-radius: $segmented-radius;
+  padding: 4px;
+  position: relative;
+  user-select: none;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  transition: background-color 0.2s ease;
+
+  // Full width modifier
+  &--full-width {
+    display: flex;
+    width: 100%;
+
+    .segmented-control__item {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+
+  // Size Modifiers
+  &--sm {
+    padding: 3px;
+    border-radius: 20px;
+
+    .segmented-control__item {
+      padding: 6px 14px;
+      font-size: 13px;
+      border-radius: 17px;
+      min-height: 28px;
+    }
+  }
+
+  &--lg {
+    padding: 5px;
+    border-radius: 32px;
+
+    .segmented-control__item {
+      padding: 12px 24px;
+      font-size: 15px;
+      border-radius: 27px;
+      min-height: 48px;
+    }
+  }
+
+  // Segment Items
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 20px;
+    min-height: 36px;
+    border-radius: $segmented-item-radius;
+    border: none;
+    background: transparent;
+    color: var(--oui-color-secondary, #99999D);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    outline: none;
+    transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    box-sizing: border-box;
+
+    &:hover:not(.segmented-control__item--active):not(:disabled) {
+      color: var(--oui-color-primary, #000000);
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.97);
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 3px rgba(56, 122, 255, 0.3);
+    }
+
+    // Active pill state
+    &--active {
+      background-color: var(--oui-color-container, #FFFFFF);
+      color: var(--oui-color-primary, #000000);
+      box-shadow: var(--oui-shadow-1, 0 1px 4px rgba(0, 0, 0, 0.1));
+      cursor: default;
+
+      &:hover {
+        background-color: var(--oui-color-container, #FFFFFF);
+      }
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    i {
+      font-size: 18px;
+    }
+  }
+}
+
+// Dark Mode Overrides
+[data-theme="dark"],
+.dark-mode {
+  .segmented-control {
+    background-color: rgba(255, 255, 255, 0.08);
+
+    &__item {
+      color: var(--oui-color-secondary, #848487);
+
+      &:hover:not(.segmented-control__item--active):not(:disabled) {
+        color: var(--oui-color-primary, #FFFFFF);
+        background-color: rgba(255, 255, 255, 0.06);
+      }
+
+      &--active {
+        background-color: var(--oui-color-container, #17171A);
+        color: var(--oui-color-primary, #FFFFFF);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+}
