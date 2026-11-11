@@ -1,5 +1,5 @@
 {
-  "name": "my-ui",
+  "name": "my-oneui",
   "version": "0.1.0",
   "description": "Samsung One UI 7 Web Component Library & Design System",
   "type": "module",
@@ -7,16 +7,16 @@
     "dist",
     "src/styles"
   ],
-  "main": "./dist/my-ui.umd.cjs",
-  "module": "./dist/my-ui.js",
+  "main": "./dist/my-oneui.umd.cjs",
+  "module": "./dist/my-oneui.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/my-ui.js",
-      "require": "./dist/my-ui.umd.cjs"
+      "import": "./dist/my-oneui.js",
+      "require": "./dist/my-oneui.umd.cjs"
     },
-    "./style.css": "./dist/my-ui.css",
+    "./style.css": "./dist/my-oneui.css",
     "./scss/*": "./src/styles/*"
   },
   "scripts": {

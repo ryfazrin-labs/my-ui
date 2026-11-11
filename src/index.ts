@@ -4,7 +4,7 @@ import './main.scss'
 // Component helpers & types
 export { createCodeCollapse } from './components/code-collapse'
 export { createSidebar, createSidebarToggle } from './components/sidebar'
-export type { SidebarItem } from './components/sidebar'
+export type { SidebarItem, SidebarCategory } from './components/sidebar'
 export { setupSlider, initSliders } from './components/slider'
 export { setupSegmentedControl, initSegmentedControls } from './components/segmented'
 export type { SegmentedControlOptions, SegmentedChangeEvent } from './components/segmented'

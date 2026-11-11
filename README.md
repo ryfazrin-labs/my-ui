@@ -1,6 +1,15 @@
-# my-ui — Samsung One UI 7 Web Component Library & Design System
+# my-oneui — Samsung One UI 7 Web Component Library & Design System
 
 A modern, responsive, and lightweight web UI component library inspired by **Samsung One UI (One UI 6 / 7)** design aesthetics, built with **Vite, TypeScript, and SCSS**.
+
+```bash
+npm install my-oneui
+```
+
+```ts
+import 'my-oneui/style.css'
+import { initTheme, showToast } from 'my-oneui'
+```
 
 ---
 

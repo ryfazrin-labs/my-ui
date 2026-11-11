@@ -7,14 +7,14 @@ export default defineConfig({
     emptyOutDir: true,
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'MyUI',
-      fileName: (format) => `my-ui.${format === 'es' ? 'js' : 'umd.cjs'}`,
+      name: 'MyOneUI',
+      fileName: (format) => `my-oneui.${format === 'es' ? 'js' : 'umd.cjs'}`,
       formats: ['es', 'umd']
     },
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name?.endsWith('.css')) return 'my-ui.css'
+          if (assetInfo.name?.endsWith('.css')) return 'my-oneui.css'
           return 'assets/[name]-[hash][extname]'
         }
       }
