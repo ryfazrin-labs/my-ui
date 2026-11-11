@@ -1,25 +1,32 @@
 {
   "name": "my-ui",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "Samsung One UI 7 Web Component Library & Design System",
   "type": "module",
   "files": [
     "dist",
-    "index.d.ts"
+    "src/styles"
   ],
-  "main": "./dist/main.umd.cjs",
-  "module": "./dist/main.js",
-  "types": "./index.d.ts",
+  "main": "./dist/my-ui.umd.cjs",
+  "module": "./dist/my-ui.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "types": "./index.d.ts",
-    "import": "./dist/main.js",
-    "require": "./dist/main.umd.cjs"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/my-ui.js",
+      "require": "./dist/my-ui.umd.cjs"
+    },
+    "./style.css": "./dist/my-ui.css",
+    "./scss/*": "./src/styles/*"
   },
   "scripts": {
     "dev": "vite",
     "typecheck": "tsc --noEmit",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build:types": "tsc -p tsconfig.lib.json",
+    "build:lib": "vite build --config vite.config.ts && npm run build:types",
+    "build:docs": "vite build --config vite.docs.config.ts",
+    "build": "npm run typecheck && npm run build:lib && npm run build:docs",
+    "preview": "vite preview --config vite.docs.config.ts"
   },
   "devDependencies": {
     "typescript": "~5.7.3",

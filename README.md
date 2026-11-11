@@ -49,7 +49,7 @@ cd my-ui
 npm install
 ```
 
-### Development Scripts
+### Development & Build Scripts
 
 ```bash
 # Start local Vite development server
@@ -58,11 +58,41 @@ npm run dev
 # Run TypeScript strict typecheck
 npm run typecheck
 
-# Build showcase and production assets
+# Build npm library distribution (dist/my-ui.js, dist/my-ui.css, dist/index.d.ts)
+npm run build:lib
+
+# Build showcase & documentation website (dist-docs/)
+npm run build:docs
+
+# Full build (typecheck + build:lib + build:docs)
 npm run build
 
-# Preview production build locally
+# Preview production showcase locally
 npm run preview
+```
+
+---
+
+## 📦 Using as an npm Package
+
+Once published or linked locally:
+
+```bash
+npm install my-ui
+```
+
+### 1. Import Compiled Stylesheet and Helpers
+```ts
+// In your application entry point (e.g. main.ts)
+import 'my-ui/style.css'
+import { createCodeCollapse, createSidebar } from 'my-ui'
+```
+
+### 2. Or Import Raw SCSS Design Tokens
+```scss
+// In your Sass stylesheet
+@import 'my-ui/scss/_design-tokens.scss';
+@import 'my-ui/scss/main.scss';
 ```
 
 ---
